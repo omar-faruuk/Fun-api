@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fun activity</title>
+</head>
+<body>
+    <h1 id="activity">activity</h1>
+    <h2 id="type">type</h2> 
+
+    <script>
+     function doSomething(){
+        fetch('http://www.boredapi.com/api/activity/')
+        .then((res => res.json()))
+        .then(data => {
+            document.getElementById('activity').innerText = data.activity;
+            document.getElementById('type').innerText = data.type;
+        })
+     }
+
+     setInterval(() => {
+         doSomething()
+     },2000);
+    </script>
+</body>
+</html>

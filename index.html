@@ -8,14 +8,31 @@
 </head>
 <body>
     <h1>json</h1>
+    <ul id="users-container">
+
+    </ul>
     <script>
-        const user = {name: 'omar faruk', phone: 018322, address: 'patiya'}
 
-        const userJson = JSON.stringify(user);
-        console.log(userJson);
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(json => displayUser(json))
+        .catch(error => console.log(error));
 
-        const userFormJson = JSON.parse(userJson);
-        console.log(userFormJson);
+        function displayUser(users){
+           const userName = users.map(user=> user.username);
+           const ul = document.getElementById('users-container');
+
+           for(let i = 0; i< userName.length; i++){
+               const user = userName[i];
+               const li = document.createElement('li');
+               li.innerText = user;
+               ul.appendChild(li);
+              
+              }
+            
+       
+        }
+
     </script>
 </body>
 </html>

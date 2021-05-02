@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+     <input id="mail" type="text" placeholder="Enter a mail">
+     <br>
+     <input id="pass" type="password" placeholder="password">
+     <br>
+     <button id="submit">submit</button>
+     
+
+
+    <script>
+       document.getElementById('submit').addEventListener('click', function(){
+           const mail = document.getElementById('mail').value;
+           const pass = document.getElementById('pass').value;
+           const post = {mail: mail, pass: pass};
+           nowPostTOServer(post)
+       })
+
+  
+   
+      function nowPostTOServer(data){
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+       method: 'POST',
+       body: JSON.stringify(data),
+       headers: {
+       'Content-type': 'application/json; charset=UTF-8',
+      },
+   })
+     .then((response) => response.json())
+     .then((json) => console.log(json));
+      }
+
+    //  function displayUsers(users){
+    //      const userName = users.map(user=> user.username);
+    //      console.log(userName);
+    //      const ul = document.getElementById('users-container')
+
+    //      for(let i=0; i<userName.length; i++){
+    //          const username = userName[i];
+    //          const li = document.createElement('li');
+    //          li.innerText = username;
+    //          ul.appendChild(li);
+             
+    //      }
+    //  }
+    </script>
+</body>
+</html>
